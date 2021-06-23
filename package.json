@@ -1,0 +1,27 @@
+{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "description": "WebSocket Infura node connection, listening for events and making Twitter posts with images",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "node-base64-image": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "twit": "^2.2.11",
+    "web3": "^1.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LimeChain/twitter-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LimeChain/twitter-bot/issues"
+  },
+  "homepage": "https://github.com/LimeChain/twitter-bot#readme"
+}
