@@ -24,7 +24,7 @@ instance.events.TokenMinted({})
 
     try {
       const options = { string: true, headers: { "User-Agent": "PolymorphBot" } };
-      const metaURL = `https://polymorphmetadata.uc.r.appspot.com/token/${tokenId}`;
+      const metaURL = `https://us-central1-polymorphmetadata.cloudfunctions.net/images-function?id=${tokenId}`;
       const tokenMetaRequest = await fetch(metaURL);
       const tokenDataText = await tokenMetaRequest.text();
       const tokenData = await JSON.parse(tokenDataText);
