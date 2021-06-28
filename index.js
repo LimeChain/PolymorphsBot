@@ -26,10 +26,8 @@ instance.events.TokenMorphed({})
     try {
       const options = { string: true, headers: { "User-Agent": "PolymorphBot" } };
       const metaURL = `${process.env.META_DATA_URL}${tokenId}`;
-      console.log(metaURL)
       const tokenMetaRequest = await fetch(metaURL);
       const tokenDataText = await tokenMetaRequest.text();
-      console.log(tokenDataText)
       const tokenData = await JSON.parse(tokenDataText);
       const ownerAddress = await instance.methods.ownerOf(tokenId).call();
       const b64content = await base64.encode(tokenData.image, options);
