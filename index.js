@@ -17,16 +17,19 @@ const T = new Twit({
 });
 
 const instance = new web3.eth.Contract(PolymorphWithGeneChanger.abi, process.env.CONTRACT_ADDRESS);
-instance.events.TokenMinted({})
+instance.events.TokenMorphed({})
   .on('data', async ({ returnValues }) => {
-    const { tokenId, newGene } = returnValues;
+    console.log(returnValues);
+    const { tokenId } = returnValues;
     if (!tokenId) return;
 
     try {
       const options = { string: true, headers: { "User-Agent": "PolymorphBot" } };
       const metaURL = `${process.env.META_DATA_URL}${tokenId}`;
+      console.log(metaURL)
       const tokenMetaRequest = await fetch(metaURL);
       const tokenDataText = await tokenMetaRequest.text();
+      console.log(tokenDataText)
       const tokenData = await JSON.parse(tokenDataText);
       const ownerAddress = await instance.methods.ownerOf(tokenId).call();
       const b64content = await base64.encode(tokenData.image, options);
@@ -39,7 +42,7 @@ instance.events.TokenMinted({})
         T.post('media/metadata/create', metaParams, (err, data, response) => {
           if (!err) {
             // now we can reference the media and post a tweet (media will attach to the tweet)
-            const params = { status: `${tokenData.name} has been created by ${ownerAddress}! ${tokenData.external_url}`, media_ids: [mediaIdString] };
+            const params = { status: `${tokenData.name} was morphed by ${ownerAddress}! ${tokenData.external_url}`, media_ids: [mediaIdString] };
 
             T.post('statuses/update', params, (err, data, response) => {
               console.log(`Twitted for token ${tokenId}`);

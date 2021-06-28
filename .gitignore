@@ -105,3 +105,4 @@ dist
 
 credentials.json
 .DS_Store
+envconf
